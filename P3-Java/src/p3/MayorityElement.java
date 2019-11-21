@@ -2,7 +2,6 @@ package p3;
 import java.io.*; 
   
 public class MayorityElement { 
-      
 // Function to find Majority element  
 // in an array  
 static String findMajority(int arr[], int n)  
@@ -17,21 +16,17 @@ static String findMajority(int arr[], int n)
             if(arr[i] == arr[j])  
             count++;  
         }  
-          
         // update maxCount if count of  
         // current element is greater  
-        if(count > maxCount)  
-        {  
+        if(count > maxCount){  
             maxCount = count;  
             index = i;  
         }  
     }  
-      
     // if maxCount is greater than n/2  
     // return the corresponding element  
     if (maxCount > n/2)  
     return "\n" + "The result number is: "  + arr[index];  
-      
     else 
     return "No Majority Element";
     }  
