@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gcc MajorityElement.cpp -lstdc++ -o main.o 1>/dev/null
+
+./main.o $*

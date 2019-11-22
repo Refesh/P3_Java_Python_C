@@ -1,0 +1,25 @@
+#!/bin/bash
+
+gcc MajorityElement.cpp -lstdc++ -o main.o 1>/dev/null
+
+echo 100 elements
+./main.o -dt -f ../ArraysFiles/VecFile_100.txt 
+echo 200 elements
+./main.o -dt -f ../ArraysFiles/VecFile_200.txt 
+echo 500 elements
+./main.o -dt -f ../ArraysFiles/VecFile_500.txt 
+echo 1000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_1000.txt 
+echo 3000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_3000.txt 
+echo 5000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_5000.txt 
+echo 10000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_10000.txt 
+echo 15000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_15000.txt 
+echo 20000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_20000.txt 
+echo 25000 elements
+./main.o -dt -f ../ArraysFiles/VecFile_25000.txt 
+
