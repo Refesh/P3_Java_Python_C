@@ -1,4 +1,4 @@
-package p3;
+package RandomArray;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +11,7 @@ public class GenRandomArray {
     static int n3;
     static int n4;
     
-    public static int[] generateRandomSlantedArray(final int length, final int minVal, final int maxVal) {
+    public static int[] generate(final int length, final int minVal, final int maxVal) {
         List<Integer> data = new ArrayList<>(length-1);
         Integer rndNum;
         
@@ -20,12 +20,12 @@ public class GenRandomArray {
         n3 = getRandomVal(minVal, maxVal);
         n4 = getRandomVal(minVal, maxVal);
         for (int i = 0; i < length-1; i++) {
-            rndNum = getRandomSlantedVal(minVal, maxVal);
+            rndNum = getRandomVal(minVal, maxVal);
             data.add(rndNum);
         }
         return data.stream().mapToInt(i -> i).toArray();
     }
-    private static int getRandomSlantedVal(int min, int max) {
+    private static int getRandomVal(int min, int max) {
         double d = Math.random();
         if(d <= 0.5){
             return n1;
@@ -38,8 +38,5 @@ public class GenRandomArray {
         }else{
             return (int)(min + (max - min + 1) * Math.random());
         }
-    }
-    private static int getRandomVal(int min, int max) {
-        return (int)(min + (max - min + 1) * Math.random());
     }
 }

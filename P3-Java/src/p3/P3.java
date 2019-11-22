@@ -1,59 +1,54 @@
 package p3;
 
+import RandomArray.GenRandomArray;
+
 public class P3 {
     public static void main(String[] args) {
-        String res;
-        String param = "";
         int [] vecs;
         double ms;
+        String res ,param = "";
         for (String arg : args)param += arg + ",";
         int pos = param.indexOf("-f");
-        if(param.indexOf("-h") == -1 && param.indexOf("-ev") == -1 &&((-1 != pos) || -1 != param.indexOf("-r") || -1 != param.indexOf("-wc"))){
+        if(param.indexOf("-h") == -1 && param.indexOf("-ev") == -1 &&((-1 != pos) || -1 != param.indexOf("-a"))){
             if(-1 != pos){
                 int pos2 = param.indexOf("," , pos+3);
                 vecs = VectLoader.loadVectFile(param.substring(pos + 3, pos2));
-            }else if(-1 != param.indexOf("-r")){
-                int n = 20000;
-                vecs = GenRandomArray.generateRandomSlantedArray(n,0,n/2);
-                VectSaver.saveVectFile("..\\..\\ArraysFiles\\VecFile_"+n+".txt", vecs);
-                System.out.println("Array with " + n + " elements.");
             }else{
-                int pos2 = param.indexOf("-wc");
-                int n = Integer.parseInt(param.substring(pos2+4,param.indexOf(",",pos2+4)));
+                int pos2 = param.indexOf("-a");
+                int n = Integer.parseInt(param.substring(pos2+3,param.indexOf(",",pos2+3)));
                 vecs = GenWorstCase.generate(n);
-                System.out.println("Worst case with: " + n + " values");
-            } 
-                
+            }
             double msInit = System.nanoTime();
             res = MayorityElement.findMajority(vecs,vecs.length);
             ms = System.nanoTime()- msInit;
+            StringBuilder di = new StringBuilder("");
             if(-1 != param.indexOf("-di")){
                 System.out.print("[");
-                for(int w : vecs)System.out.print(w + ",");
-                System.out.println("]");
+                for(int w : vecs)di.append(w + ",");
+                System.out.println(di.toString().substring(0, di.lastIndexOf(",")) + "]");
             }
             if( -1 != param.indexOf("-do"))System.out.println("\n"+ res.trim());
-            if(-1 != param.indexOf("-dt"))System.out.println("\nTime: " + (ms/1000000000) + " seg.");
+            if(-1 != param.indexOf("-dt"))System.out.println("Time: " + (ms/1000000000) + " s\n");
         } else if(param.indexOf("-h") != -1){
             System.out.println("Input switches\n" + 
-                                "-wc n: Generate the worst case with n values.\n" +
+                                "-a length : input initialized with ascending values\n" +
                                 "-f filename : input data from given filename\n" +
-                                "-r Generate array with pseudorandom values and save them ArrayFiles\n" +
-                                "-ev :Evaluate and show how the algorithm works with diferent arrays sizes.\n" +
+                                "-ev :Evaluate and show how the algorithm works with diferent arrays sizes\n" +
                                 "Display switches\n" +
-                                "-dt : Display time in miliseconds\n" +
+                                "-dt : Display time in seconds\n" +
                                 "-di : Display input\n" +
                                 "-do : Display output");
         }else if(param.indexOf("-ev") != -1){
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_100.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_200.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_500.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_1000.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_3000.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_5000.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_10000.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_15000.txt");
-            EvaluateAlgorithm.evaluate("..\\..\\ArraysFiles\\VecFile_20000.txt");
+            String s = "..\\..\\ArraysFiles\\VecFile_";
+            EvaluateAlgorithm.evaluate(s + 200 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 500 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 1000 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 3000 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 5000 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 10000 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 15000 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 20000 + ".txt");
+            EvaluateAlgorithm.evaluate(s + 25000 + ".txt");
         }else System.out.println("ERROR");
     }     
 }
